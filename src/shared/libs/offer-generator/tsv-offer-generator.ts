@@ -12,7 +12,7 @@ export class TSVOfferGenerator implements OfferGenerator {
   public generate(): string {
     const name = getRandomItem<string>(this.mockData.name);
     const description = getRandomItem<string>(this.mockData.description);
-    const publicationDate = dayjs()
+    const postDate = dayjs()
       .subtract(generateRandomValue(FIRST_WEEK_DAY, LAST_WEEK_DAY), 'day')
       .toISOString();
     const city = getRandomItem<string>(this.mockData.city);
@@ -25,16 +25,19 @@ export class TSVOfferGenerator implements OfferGenerator {
     const rooms = getRandomInt(1, 8);
     const visiters = getRandomInt(1, 8);
     const price = getRandomInt(100, 100000);
-    const amenities = getRandomItems<string>(this.mockData.amenities).join(';');
-    const author = getRandomItem<string>(this.mockData.author);//TODO
-    const coordinates = getRandomItem(this.mockData.coordinates);
     const commentsCount = getRandomInt(1, 50);
-    const {latitude, longitude} = coordinates;
+    const amenities = getRandomItems<string>(this.mockData.amenities).join(';');
+    const author = getRandomItem<string>(this.mockData.author);
+    const email = getRandomItem<string>(this.mockData.email);
+    const avatarPath = this.mockData.avatarPath;
+    const userType = getRandomItem<string>(this.mockData.userType);
+    const coordinates = getRandomItem(this.mockData.coordinates);
+    const { latitude, longitude } = coordinates;
 
     return [
       name,
       description,
-      publicationDate,
+      postDate,
       city,
       previewImage,
       photos,
@@ -47,6 +50,9 @@ export class TSVOfferGenerator implements OfferGenerator {
       price,
       amenities,
       author,
+      email,
+      avatarPath,
+      userType,
       commentsCount,
       latitude,
       longitude

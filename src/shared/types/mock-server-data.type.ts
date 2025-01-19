@@ -9,6 +9,9 @@ export type MockServerData = {
   housingType: string[];
   amenities: string[];
   author: string[];
+  email: string[];
+  avatarPath: string[];
+  userType: string[];
   coordinates: {
       latitude: number;
       longitude: number;

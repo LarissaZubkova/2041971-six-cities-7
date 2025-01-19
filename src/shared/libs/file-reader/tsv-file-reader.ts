@@ -2,7 +2,7 @@ import EventEmitter from 'node:events';
 import { createReadStream } from 'node:fs';
 
 import { FileReader } from './file-reader.interface.js';
-import { Offer } from '../../types/index.js';
+import { Offer, User } from '../../types/index.js';
 import { Amenity, City, HousingType } from '../../types/offer.type.js';
 
 export class TSVFileReader extends EventEmitter implements FileReader {
@@ -16,9 +16,9 @@ export class TSVFileReader extends EventEmitter implements FileReader {
 
   private parseLineToOffer(line: string): Offer {
     const [
-      name,
+      title,
       description,
-      createdDate,
+      postDate,
       city,
       previewImage,
       photos,
@@ -30,16 +30,19 @@ export class TSVFileReader extends EventEmitter implements FileReader {
       guests,
       rentalCost,
       amenities,
-      author,
+      name,
+      email,
+      avatarPath,
+      userType,
       commentsCount,
       latitude,
       longitude,
     ] = line.split('\t');
 
     return {
-      name,
+      title,
       description,
-      publicationDate: new Date(createdDate),
+      postDate: new Date(postDate),
       city: city as City,
       previewImage,
       photos: this.parseStringToArray(photos),
@@ -51,10 +54,14 @@ export class TSVFileReader extends EventEmitter implements FileReader {
       guests: Number(guests),
       rentalCost: Number(rentalCost),
       amenities: this.parseStringToArray(amenities) as Amenity[],
-      author,
+      author: this.parseUser(name, email, avatarPath, userType),
       commentsCount: Number(commentsCount),
-      coordinates: {latitude: Number(latitude), longitude: Number(longitude)}
+      coordinates: { latitude: Number(latitude), longitude: Number(longitude) }
     };
+  }
+
+  private parseUser(name: string, email: string, avatarPath: string, userType: string): User {
+    return { name, email, avatarPath, userType };
   }
 
   private parseStringToArray(photosString: string): string[] {
@@ -87,7 +94,10 @@ export class TSVFileReader extends EventEmitter implements FileReader {
         importedRowCount++;
 
         const parsedOffer = this.parseLineToOffer(completeRow);
-        this.emit('line', parsedOffer);
+
+        await new Promise((resolve) => {
+          this.emit('line', parsedOffer, resolve);
+        });
       }
     }
 

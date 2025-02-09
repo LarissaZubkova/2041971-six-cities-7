@@ -2,3 +2,23 @@
 GET http://localhost:3132/api HTTP/1.1
 
 ###
+
+
+POST /posts HTTP/1.1
+Host: jsonplaceholder.typicode.com
+Content-Type: application/json
+Content-Length: 88
+
+{
+    "userId": 31337,
+    "title": "Новая публикация",
+    "body": "Текст публикации"
+}
+
+
+###
+
+GET /secret-page HTTP/1.1
+Host: myserver.local
+Authorization: Basic YWRtaW46MTIzNDU2
+

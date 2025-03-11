@@ -3,7 +3,7 @@ import { City, HousingType, Amenity } from '../../../types/offer.type.js';
 export class CreateOfferDto {
   title: string;
   description: string;
-  postDate: Date;
+  postDate?: Date;
   city: City;
   previewImage: string;
   photos: string[];

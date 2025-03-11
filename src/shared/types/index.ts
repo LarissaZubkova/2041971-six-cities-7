@@ -4,3 +4,5 @@ export { User } from './user.type.js';
 export { MockServerData } from './mock-server-data.type.js';
 export { Component } from './component.enum.js';
 export { SortType } from './sort-type.enum.js';
+export { RequestParams } from './request.params.type.js';
+export { RequestBody } from './request-body.type.js';

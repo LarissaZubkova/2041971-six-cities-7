@@ -1,0 +1,37 @@
+# Предложения
+## Получить список предложений
+GET http://localhost:5000/offers HTTP/1.1
+Content-Type: application/json
+
+###
+
+## Добавить новое предложение
+POST http://localhost:5000/offers HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Уютный лофт с видом на Кремль",
+  "description": "Расположенный в самом сердце Москвы, этот стильный лофт предлагает не только комфорт и функциональность",
+  "city": "Москва",
+  "previewImage": "preview_image_moscow_loft.jpg",
+  "photos": ["preview_image_moscow_loft.jpg"],
+  "isPremium": true,
+  "isFavorite": true,
+  "rating": 5,
+  "housingType": "apartment",
+  "rooms": 3,
+  "guests":3,
+  "rentalCost": 5,
+  "commentsCount": 5,
+  "amenities": ["Breakfast"],
+  "author": "507f1f77bcf86cd799439011",
+  "email": "user1@example.com",
+  "avatarPath": "../src/shared/modules/user/avatar.png",
+  "userType": "обычный",
+  "coordinates": {
+    "latitude": 55.7558,
+    "longitude": 37.6173
+  }
+}
+
+###

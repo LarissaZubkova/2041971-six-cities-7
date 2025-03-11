@@ -3,7 +3,8 @@ export {
   getRandomSubarray,
   getRandomItem,
   getRandomItems,
-  getRandomInt
+  getRandomInt,
+  fillDTO,
 } from './common.js';
 
 export { getCurrentModuleDirectoryPath } from './file-system.js';

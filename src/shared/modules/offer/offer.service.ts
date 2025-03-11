@@ -1,4 +1,4 @@
-import { inject } from 'inversify';
+import { inject, injectable } from 'inversify';
 import { CreateOfferDto, OfferEntity, OfferService } from './index.js';
 import { Component, SortType } from '../../types/index.js';
 import { Logger } from '../../libs/logger/index.js';
@@ -6,6 +6,7 @@ import { DocumentType, types } from '@typegoose/typegoose';
 import { UpdateOfferDto } from './dto/update-offer.dto.js';
 import { DEFAULT_OFFER_COUNT } from './offer.constant.js';
 
+@injectable()
 export class DefaultOfferService implements OfferService {
   constructor(
     @inject(Component.Logger) private readonly logger: Logger,
@@ -21,14 +22,14 @@ export class DefaultOfferService implements OfferService {
   public findByOfferId(offerId: string): Promise<types.DocumentType<OfferEntity> | null> {
     return this.offerModel
       .findById(offerId)
-      .populate(['userId'])
+      //.populate([''])
       .exec();
   }
 
   public async find(): Promise<DocumentType<OfferEntity>[]> {
     return this.offerModel
       .find()
-      .populate(['userId'])
+      //.populate([''])
       .exec();
   }
 
@@ -41,7 +42,7 @@ export class DefaultOfferService implements OfferService {
   public async updateById(offerId: string, dto: UpdateOfferDto): Promise<DocumentType<OfferEntity> | null> {
     return this.offerModel
       .findByIdAndUpdate(offerId, dto, { new: true })
-      .populate(['userId'])
+    // .populate([''])
       .exec();
   }
 
@@ -49,7 +50,7 @@ export class DefaultOfferService implements OfferService {
     const limit = count ?? DEFAULT_OFFER_COUNT;
     return this.offerModel
       .find({ categories: categoryId }, {}, { limit })
-      .populate(['userId', 'categories'])
+      .populate([''])
       .exec();
   }
 
@@ -70,7 +71,7 @@ export class DefaultOfferService implements OfferService {
       .find()
       .sort({ createdAt: SortType.Down })
       .limit(count)
-      .populate(['userId'])
+      //.populate([''])
       .exec();
   }
 

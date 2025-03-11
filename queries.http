@@ -22,3 +22,11 @@ GET /secret-page HTTP/1.1
 Host: myserver.local
 Authorization: Basic YWRtaW46MTIzNDU2
 
+###
+# Категории
+## Получить список категорий
+GET http://localhost:5000/offers HTTP/1.1
+Content-Type: application/json
+
+###
+

@@ -35,3 +35,16 @@ Content-Type: application/json
 }
 
 ###
+
+## Обновить объявление
+
+PATCH http://localhost:5000/offers/652e71c6d9f30c786a73f139 HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Ночной дозор 3",
+  "description": "Проверка обновления",
+  "price": 1100
+}
+
+###

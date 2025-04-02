@@ -7,7 +7,7 @@ import { ConsoleLogger } from '../../shared/libs/logger/console.logger.js';
 import { Logger } from '../../shared/libs/logger/index.js';
 import { OfferService } from '../../shared/modules/offer/offer-service.interface.js';
 import { OfferModel } from '../../shared/modules/offer/offer.entity.js';
-import { DefaultOfferService } from '../../shared/modules/offer/offer.service.js';
+import { DefaultOfferService } from '../../shared/modules/offer/default-offer.service.js';
 import { DefaultUserService } from '../../shared/modules/user/default-user.service.js';
 import { UserModel, UserService } from '../../shared/modules/user/index.js';
 import { Offer } from '../../shared/types/offer.type.js';

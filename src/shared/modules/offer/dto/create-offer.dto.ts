@@ -1,5 +1,5 @@
 import { City, HousingType, Amenity } from '../../../types/offer.type.js';
-import { IsArray, IsDateString, IsInt, IsMongoId, Max, MaxLength, Min, MinLength } from 'class-validator';
+import { IsArray, IsDateString, IsInt, Max, MaxLength, Min, MinLength } from 'class-validator';
 import { CreateOfferValidationMessage } from './create-offer.messages.js';
 
 export class CreateOfferDto {
@@ -33,8 +33,7 @@ export class CreateOfferDto {
     @IsArray({ message: CreateOfferValidationMessage.amenities.invalidFormat })
       amenities: Amenity[];
 
-    @IsMongoId({ message: CreateOfferValidationMessage.userId.invalidId })
-      author: string;
+    author: string;
 
     commentsCount: number;
     coordinates: {
